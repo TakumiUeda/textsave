@@ -1,40 +1,38 @@
-#データをテキスト形式で保存
-実験データなどをMATLABに取り込み処理後保存する、Simulinkで動かしているロボットのデータを撮る時など、mat形式以外で保存したい時があると思います。
-保存用のソースを書くにあたり、まずMファイルでの実装を行いました。
+#データをテキスト形式で保存 
+実験データなどをMATLABに取り込み処理後保存する、Simulinkで動かしているロボットのデータを撮る時など、mat形式以外で保存したい時があると思います。 保存用のソースを書くにあたり、まずMファイルでの実装を行いました。
 
-#コードの解説
+#コードの解説 
 現在の時間をとってきます。
 
-```
+```matlab
 t = now;
 datetime=datetime(t,'ConvertFrom','datenum');
 clear t;
 ```
 
-dd-mmm-yyyy_HH-MM-SSは時間のフォーマットを設定します。
-この場合、29-Nov-2019_01-42-55と出力されます。
+dd-mmm-yyyy_HH-MM-SSは時間のフォーマットを設定します。 この場合、29-Nov-2019_01-42-55と出力されます。
 
-```
+```matlab
 datefmt = 'dd-mmm-yyyy_HH-MM-SS';
 ```
 
 datefmtに保存された時間データを元にフォルダを作成します。
 
-```
+```matlab
 mkdir(dirname);
 ```
 
 ファイルを開いてデータを書き込みます。
 
-```
+```matlab
 fileID= fopen([dirname,filename],'a');
 fprintf(fileID,str);
 fclose(fileID);
 ```
 
-
 #ソース全体
-```
+
+```matlab
 echo on
 % user editable m-file script for text log
 % テキスト形式保存のためのMファイルスクリプト
@@ -64,6 +62,9 @@ fileID= fopen([dirname,filename],'a');
 fprintf(fileID,str);
 fclose(fileID);
 ```
+# github 
+
+https://github.com/rein-chihaya/textsave
 
 # License
 MIT
